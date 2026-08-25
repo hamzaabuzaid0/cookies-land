@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 // Real project (created 2026-08-25, Spark/free plan). No Firebase Storage
 // here on purpose — as of late 2024 Google requires the paid Blaze plan for
@@ -18,3 +19,4 @@ export const firebaseConfigured = firebaseConfig.apiKey !== 'TODO';
 
 export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const auth = getAuth(app);

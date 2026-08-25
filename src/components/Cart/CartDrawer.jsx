@@ -39,7 +39,7 @@ export function CartDrawer() {
       source: 'cart',
       items: ids.map((id) => {
         const p = products.find((pp) => pp.id === id);
-        return { id, ar: p.ar, en: p.en, qty: cart[id], price: p.price };
+        return { id, ar: p.ar, en: p.en, unit: p.unit || null, qty: cart[id], price: p.price };
       }),
       fulfillment: {
         mode: form.mode, name: form.name, phone: form.phone, address: form.address, notes: form.notes,

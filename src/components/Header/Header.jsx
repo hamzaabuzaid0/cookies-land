@@ -1,12 +1,14 @@
 import { useLanguage } from '../../i18n/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { useDrawer } from '../../context/DrawerContext';
+import { useAuth } from '../../context/AuthContext';
 import { BrandLogo } from './BrandLogo';
 
 export function Header() {
   const { lang, t, toggleLang } = useLanguage();
   const { itemCount } = useCart();
-  const { openCart } = useDrawer();
+  const { openCart, openAuth, adminView, setAdminView } = useDrawer();
+  const { user, isAdmin, signOut } = useAuth();
 
   return (
     <header>
@@ -22,18 +24,42 @@ export function Header() {
           <button className="lang-toggle" onClick={toggleLang}>
             {lang === 'ar' ? 'English' : 'عربي'}
           </button>
-          <button className="cart-btn" onClick={openCart}>
-            <span>🛒</span>
-            <span>{t('cart')}</span>
-            {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
-          </button>
+          {user ? (
+            <button className="cart-btn" onClick={signOut}>
+              <span>👤</span>
+              <span>{user.displayName || user.email} — {t('logoutBtn')}</span>
+            </button>
+          ) : (
+            <button className="cart-btn" onClick={openAuth}>
+              <span>👤</span>
+              <span>{t('accountBtn')}</span>
+            </button>
+          )}
+          {!adminView && (
+            <button className="cart-btn" onClick={openCart}>
+              <span>🛒</span>
+              <span>{t('cart')}</span>
+              {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
+            </button>
+          )}
         </div>
       </div>
       <nav className="site-nav">
         <div className="site-nav-inner">
-          <a className="nav-link" href="#shop">{t('navShop')}</a>
-          <a className="nav-link" href="#custom-order">{t('navCustomOrder')}</a>
-          <a className="nav-link" href="#about">{t('navAbout')}</a>
+          {adminView ? (
+            <button className="nav-link active" onClick={() => setAdminView(false)}>{t('backToStore')}</button>
+          ) : (
+            <>
+              <a className="nav-link" href="#shop">{t('navShop')}</a>
+              <a className="nav-link" href="#custom-order">{t('navCustomOrder')}</a>
+              <a className="nav-link" href="#about">{t('navAbout')}</a>
+              {isAdmin && (
+                <button className="nav-link admin-nav-link" onClick={() => setAdminView(true)}>
+                  {t('adminNav')}
+                </button>
+              )}
+            </>
+          )}
         </div>
       </nav>
     </header>

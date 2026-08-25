@@ -106,6 +106,16 @@ export const translations = {
     startNewOrder: 'طلب جديد',
 
     // Owner ticket dashboard (/owner)
+    accountBtn: 'حسابي',
+    logoutBtn: 'خروج',
+    loginTab: 'تسجيل الدخول',
+    signupTab: 'حساب جديد',
+    emailLabel: 'الإيميل',
+    passwordLabel: 'كلمة السر',
+    continueAsGuest: 'الاستمرار كضيف',
+    adminNav: 'لوحة الإدارة',
+    backToStore: '← رجوع للمتجر',
+
     ownerPageTitle: 'تذاكر الطلبات',
     ownerPinPrompt: 'ادخلي كود الدخول',
     ownerPinWrong: 'الكود غلط',
@@ -123,7 +133,7 @@ export const translations = {
     viewScreenshotLabel: 'صورة إيصال الدفع',
     notifyReceivedBtn: '📲 إشعار: الطلب مستلم',
     confirmPaymentBtn: '✅ تأكيد الدفع + إشعار التحضير',
-    refreshHint: 'الصفحة دي بتتحدث لوحدها أول ما طلب جديد يوصل.',
+    refreshHint: 'الصفحة دي بتتحدث لوحدها أول ما طلب جديد يوصل، وهتسمعي صوت تنبيه لو الصفحة مفتوحة (سيبيها مفتوحة عشان تتنبهي).',
 
     // WhatsApp notify messages sent BY the owner FROM the ticket dashboard
     // (one tap, pre-filled — see /owner). Always Arabic, like the other
@@ -140,7 +150,7 @@ export const translations = {
       'كوكيز لاند في مدينة السادس من أكتوبر — أكل جاهز ومجمد، بروتينات، صوصات مستوردة، وحلويات وآيس كريم. تقدروا تطلبوا أونلاين وتستلموا من المحل أو نوصلكم لحد البيت.',
     followUs: 'تابعونا',
     locationLabel: 'العنوان',
-    locationValue: 'مدينة السادس من أكتوبر، الجيزة',
+    locationValue: 'مدينة السادس من أكتوبر - مدينة الفردوس - مساكن الشرطة الاستثماري - بلوك (ي) المجاورة الثانية - عمارة رقم ٣ - أمام منتجع الزهور',
     whatsappLabel: 'واتساب',
     footerNote: 'موقع تجريبي (ديمو) — الأسعار مبدئية لحد ما تتأكد.',
   },
@@ -247,6 +257,16 @@ export const translations = {
     startNewOrder: 'Start a New Order',
 
     // Owner ticket dashboard (/owner)
+    accountBtn: 'Account',
+    logoutBtn: 'Log Out',
+    loginTab: 'Log In',
+    signupTab: 'Sign Up',
+    emailLabel: 'Email',
+    passwordLabel: 'Password',
+    continueAsGuest: 'Continue as Guest',
+    adminNav: 'Admin Dashboard',
+    backToStore: '← Back to Store',
+
     ownerPageTitle: 'Order Tickets',
     ownerPinPrompt: 'Enter access code',
     ownerPinWrong: 'Wrong code',
@@ -264,7 +284,7 @@ export const translations = {
     viewScreenshotLabel: 'Payment Screenshot',
     notifyReceivedBtn: '📲 Notify: Order Received',
     confirmPaymentBtn: '✅ Confirm Payment + Notify: Preparing',
-    refreshHint: 'This page updates itself automatically when a new order arrives.',
+    refreshHint: "This page updates itself automatically when a new order arrives, and plays a sound if the page is open (keep it open to get alerted).",
 
     // WhatsApp notify messages sent BY the owner FROM the ticket dashboard
     // (one tap, pre-filled — see /owner). Always Arabic, like the other
@@ -281,7 +301,7 @@ export const translations = {
       "Cookies Land is based in 6th of October City — ready-to-cook & frozen meals, protein, imported sauces, desserts and ice cream. Order online and pick up in-store, or we'll deliver to you.",
     followUs: 'Follow Us',
     locationLabel: 'Location',
-    locationValue: '6th of October City, Giza',
+    locationValue: '6th of October City - Al-Fardous City - Investment Police Housing - Block (Y) - 2nd District - Building 3 - opposite Al-Zohour Resort',
     whatsappLabel: 'WhatsApp',
     footerNote: 'Demo website — prices are placeholders until confirmed.',
   },

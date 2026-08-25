@@ -16,7 +16,14 @@ export function Footer() {
           <div className="about-stats">
             <div className="stat-box">
               <div className="stat-label">{t('locationLabel')}</div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, marginTop: 4 }}>{t('locationValue')}</div>
+              <a
+                href={business.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, marginTop: 4, textDecoration: 'underline' }}
+              >
+                {t('locationValue')}
+              </a>
             </div>
             <div className="stat-box">
               <div className="stat-label">{t('whatsappLabel')}</div>

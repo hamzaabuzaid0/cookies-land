@@ -7,6 +7,9 @@ export const business = {
   whatsapp: '201150288114', // confirmed via Facebook page contact info
   whatsappDisplay: '011 5028 8114',
   facebookUrl: 'https://www.facebook.com/c0okiesland/',
+  // Cleaned of the Facebook link-shim + tracking params (fbclid etc.) it
+  // arrived wrapped in — this is just the underlying Google Maps short link.
+  mapsUrl: 'https://maps.app.goo.gl/qfrNrQZsC1afNkyA7',
   instagramUrl: null, // the @coookieland37 handle originally given turned out to belong to a
   // different business (Khamis Mushait/Abha, Saudi Arabia) — left blank until the real
   // Cookies Land Instagram (if any) is confirmed.
@@ -17,9 +20,10 @@ export const business = {
   instapayNumber: '01150288114',
   instapayName: 'كوكيز لاند',
 
-  // PIN for the /owner ticket dashboard. This is a UX gate only, NOT real
-  // security — see src/firebaseConfig.js and firestore.rules for why. Change
-  // this before sharing the link with the owner, and treat it as throwaway
-  // until real auth is added.
-  ownerPin: '1234',
+  // Whoever logs into the site with this exact email sees the admin/tickets
+  // section — everyone else just gets a normal customer account. Sign up on
+  // the site with this email to become admin. MUST match the email hardcoded
+  // into firestore.rules (Firestore rules can't read this file) — if you
+  // change this, update firestore.rules too and republish it.
+  adminEmail: 'owner@cookiesland.demo',
 };

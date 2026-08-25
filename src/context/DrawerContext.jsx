@@ -4,15 +4,21 @@ const DrawerContext = createContext(null);
 
 export function DrawerProvider({ children }) {
   const [cartOpen, setCartOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
+  const [adminView, setAdminView] = useState(false);
 
   const openCart = useCallback(() => setCartOpen(true), []);
   const closeCart = useCallback(() => setCartOpen(false), []);
+  const openAuth = useCallback(() => setAuthOpen(true), []);
+  const closeAuth = useCallback(() => setAuthOpen(false), []);
 
-  return (
-    <DrawerContext.Provider value={{ cartOpen, openCart, closeCart }}>
-      {children}
-    </DrawerContext.Provider>
-  );
+  const value = {
+    cartOpen, openCart, closeCart,
+    authOpen, openAuth, closeAuth,
+    adminView, setAdminView,
+  };
+
+  return <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>;
 }
 
 export function useDrawer() {

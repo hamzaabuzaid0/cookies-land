@@ -9,7 +9,9 @@ export function CartProvider({ children }) {
   const changeQty = useCallback((id, delta) => {
     setCart((prev) => {
       const current = prev[id] || 0;
-      const next = Math.max(0, current + delta);
+      // Rounded to 1 decimal — protein moves in 0.5kg steps, and plain
+      // float addition can otherwise leave artifacts like 1.2999999999998.
+      const next = Math.max(0, Math.round((current + delta) * 10) / 10);
       const copy = { ...prev };
       if (next === 0) delete copy[id];
       else copy[id] = next;

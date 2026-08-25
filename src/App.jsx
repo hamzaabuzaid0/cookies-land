@@ -1,7 +1,7 @@
 import { LanguageProvider } from './i18n/LanguageContext';
 import { CartProvider } from './context/CartContext';
-import { DrawerProvider } from './context/DrawerContext';
-import { useHashRoute } from './utils/useHashRoute';
+import { DrawerProvider, useDrawer } from './context/DrawerContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 
 import { Header } from './components/Header/Header';
 import { Hero } from './components/Home/Hero';
@@ -11,12 +11,12 @@ import { CustomOrderForm } from './components/CustomOrder/CustomOrderForm';
 import { Footer } from './components/Footer/Footer';
 import { Overlay } from './components/Overlay';
 import { CartDrawer } from './components/Cart/CartDrawer';
-import { OwnerPage } from './components/Owner/OwnerPage';
+import { AuthModal } from './components/Auth/AuthModal';
+import { AdminSection } from './components/Owner/OwnerPage';
 
 function Storefront() {
   return (
     <>
-      <Header />
       <Hero />
       <CategoryQuickGrid />
       <ShopSections />
@@ -28,17 +28,29 @@ function Storefront() {
   );
 }
 
-export default function App() {
-  const hash = useHashRoute();
-  const isOwnerRoute = hash.startsWith('#/owner');
+function Shell() {
+  const { adminView } = useDrawer();
+  const { isAdmin } = useAuth();
 
   return (
+    <>
+      <Header />
+      {adminView && isAdmin ? <AdminSection /> : <Storefront />}
+      <AuthModal />
+    </>
+  );
+}
+
+export default function App() {
+  return (
     <LanguageProvider>
-      <CartProvider>
-        <DrawerProvider>
-          {isOwnerRoute ? <OwnerPage /> : <Storefront />}
-        </DrawerProvider>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <DrawerProvider>
+            <Shell />
+          </DrawerProvider>
+        </CartProvider>
+      </AuthProvider>
     </LanguageProvider>
   );
 }

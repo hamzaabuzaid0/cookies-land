@@ -1,5 +1,6 @@
 import { translations } from '../i18n/translations';
 import { productName } from './productName';
+import { formatQty } from './unitLabel';
 
 // The WhatsApp message is always written in Arabic (how the shop actually
 // communicates) regardless of the site's current display language. Per-item
@@ -27,7 +28,7 @@ export function buildWhatsappMessage({ cart, products, fulfillment, deliveryFee,
     const p = products.find((pp) => pp.id === id);
     const qty = cart[id];
     subtotal += p.price * qty;
-    lines.push(`• ${productName(p, 'ar')} x${qty}`);
+    lines.push(`• ${productName(p, 'ar')} x${formatQty(qty, p, 'ar')}`);
   });
   lines.push('');
 

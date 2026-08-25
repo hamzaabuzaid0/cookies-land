@@ -3,12 +3,14 @@ import { useCart } from '../../context/CartContext';
 import { productName } from '../../utils/productName';
 import { CategoryVisual } from '../../utils/categoryVisual';
 import { Ltr } from '../../utils/Ltr';
+import { unitStep, formatQty } from '../../utils/unitLabel';
 
 export function ProductCard({ product }) {
   const { lang, t } = useLanguage();
   const { cart, changeQty } = useCart();
   const qty = cart[product.id] || 0;
   const name = productName(product, lang);
+  const step = unitStep(product);
 
   return (
     <div className="product-card">
@@ -32,9 +34,9 @@ export function ProductCard({ product }) {
 
       {qty > 0 ? (
         <div className="qty-row">
-          <button className="qty-btn" onClick={() => changeQty(product.id, -1)}>−</button>
-          <span>{qty}</span>
-          <button className="qty-btn" onClick={() => changeQty(product.id, 1)}>+</button>
+          <button className="qty-btn" onClick={() => changeQty(product.id, -step)}>−</button>
+          <span><Ltr>{formatQty(qty, product, lang)}</Ltr></span>
+          <button className="qty-btn" onClick={() => changeQty(product.id, step)}>+</button>
         </div>
       ) : (
         <button className="add-btn" onClick={() => changeQty(product.id, 1)}>{t('add')}</button>

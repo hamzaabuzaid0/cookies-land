@@ -1,22 +1,18 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // DEMO-ONLY rules — wide open, no auth check at all.
-    // Order tickets contain customer names, phone numbers, addresses and a
-    // compressed payment screenshot. That's sensitive enough that this
-    // MUST be locked down (Firebase Auth + rules that check the signed-in
-    // user is the owner) before this site is used with real customers.
-    // Fine for a private pitch demo only.
+    // Real security now that the site has Firebase Auth: any visitor can
+    // submit an order (no account required — guest checkout), but only the
+    // signed-in admin account can read or update tickets (which include
+    // customer names, phone numbers, addresses and payment screenshots).
     //
-    // No document-size guard here on purpose: `request.resource.size` is a
-    // Cloud Storage rules property, not a Firestore one — using it here
-    // makes every write throw and fail closed (this took a live debugging
-    // session to catch). Firestore already hard-caps documents at 1MB on
-    // its own, so no extra guard is needed; compressImage.js keeps
-    // screenshots well under that regardless.
+    // The email below MUST match business.js's `adminEmail` exactly — that
+    // JS constant can't be read from here, so if you change one, change
+    // both and republish these rules.
     match /orders/{orderId} {
       allow create: if true;
-      allow read, update: if true;
+      allow read, update: if request.auth != null
+        && request.auth.token.email == 'owner@cookiesland.demo';
       allow delete: if false;
     }
   }

@@ -250,6 +250,14 @@ footer{
 .ticket-success p{font-size:0.85rem;line-height:1.6;color:var(--ink);}
 .ticket-success button{margin-top:14px;padding:10px 20px;}
 
+/* ===== Auth modal ===== */
+.auth-modal{
+  position:fixed;top:50%;inset-inline-start:50%;transform:translate(-50%,-50%);
+  background:var(--card);border-radius:var(--radius);padding:24px;
+  width:min(360px,90vw);box-shadow:var(--shadow);z-index:110;
+}
+html[dir="rtl"] .auth-modal{transform:translate(50%,-50%);}
+
 /* ===== Owner PIN gate ===== */
 .pin-gate{
   min-height:100vh;display:flex;align-items:center;justify-content:center;

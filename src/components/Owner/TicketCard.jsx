@@ -2,6 +2,7 @@ import { useLanguage } from '../../i18n/LanguageContext';
 import { updateOrderStatus } from '../../utils/ordersRepo';
 import { buildReceivedNotifyMessage, buildPreparingNotifyMessage } from '../../utils/buildNotifyMessage';
 import { productName } from '../../utils/productName';
+import { formatQty } from '../../utils/unitLabel';
 import { Ltr } from '../../utils/Ltr';
 
 function openWhatsapp({ text, phone }) {
@@ -46,7 +47,7 @@ export function TicketCard({ ticket }) {
             </>
           ) : (
             (ticket.items || []).map((it, i) => (
-              <div key={i}>{productName(it, lang)} × {it.qty}</div>
+              <div key={i}>{productName(it, lang)} × <Ltr>{formatQty(it.qty, it, lang)}</Ltr></div>
             ))
           )}
         </span>
