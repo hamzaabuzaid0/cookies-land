@@ -8,11 +8,14 @@ service cloud.firestore {
     // user is the owner) before this site is used with real customers.
     // Fine for a private pitch demo only.
     //
-    // The size cap on create is a basic abuse guard: Firestore documents
-    // cap at 1MB anyway, this just fails fast with a clear error instead of
-    // a confusing write failure if a screenshot didn't compress small enough.
+    // No document-size guard here on purpose: `request.resource.size` is a
+    // Cloud Storage rules property, not a Firestore one — using it here
+    // makes every write throw and fail closed (this took a live debugging
+    // session to catch). Firestore already hard-caps documents at 1MB on
+    // its own, so no extra guard is needed; compressImage.js keeps
+    // screenshots well under that regardless.
     match /orders/{orderId} {
-      allow create: if request.resource.size < 900000;
+      allow create: if true;
       allow read, update: if true;
       allow delete: if false;
     }

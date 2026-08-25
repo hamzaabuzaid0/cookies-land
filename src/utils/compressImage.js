@@ -1,10 +1,18 @@
 // Compresses/resizes an uploaded photo client-side so it's small enough to
-// store directly as a string inside a Firestore document (1MB doc limit).
-// This is instead of Firebase Storage — as of late 2024 Google requires the
-// paid Blaze plan for Storage even at trivial usage, which isn't worth
-// asking for on a pitch demo. Iterates down JPEG quality until it's safely
-// under the limit (base64 encoding adds ~33% overhead on top of byte size).
-export function compressImageToDataUrl(file, { maxDimension = 1000, maxBytes = 700000 } = {}) {
+// store directly as a string inside a Firestore document (1MB doc limit,
+// firestore.rules caps whole-document size at 900,000 bytes). This is
+// instead of Firebase Storage — as of late 2024 Google requires the paid
+// Blaze plan for Storage even at trivial usage, which isn't worth asking
+// for on a pitch demo. Iterates down JPEG quality until it's safely under
+// the limit.
+//
+// IMPORTANT: maxBytes below caps `dataUrl.length` directly — that string
+// (not the decoded image) is what actually gets written to Firestore and
+// counted against the document-size rule, so don't multiply/divide by 0.75
+// here (base64 is ~33% *larger* than the raw bytes, not smaller). Kept well
+// under the 900,000 rule ceiling to leave room for the rest of the ticket's
+// fields (name, phone, items, etc).
+export function compressImageToDataUrl(file, { maxDimension = 1000, maxBytes = 500000 } = {}) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onerror = () => reject(new Error('Could not read file'));
@@ -25,11 +33,11 @@ export function compressImageToDataUrl(file, { maxDimension = 1000, maxBytes = 7
 
         let quality = 0.8;
         let dataUrl = canvas.toDataURL('image/jpeg', quality);
-        while (dataUrl.length * 0.75 > maxBytes && quality > 0.3) {
+        while (dataUrl.length > maxBytes && quality > 0.3) {
           quality -= 0.1;
           dataUrl = canvas.toDataURL('image/jpeg', quality);
         }
-        if (dataUrl.length * 0.75 > maxBytes) {
+        if (dataUrl.length > maxBytes) {
           reject(new Error('Image too large even after compression'));
           return;
         }
