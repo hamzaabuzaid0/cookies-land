@@ -59,9 +59,9 @@ export function TicketCard({ ticket }) {
       )}
       <div className="ticket-row"><span>{t('ticketDepositLabel')}</span><span><Ltr>{ticket.depositAmount} {t('egp')}</Ltr></span></div>
 
-      {ticket.paymentScreenshotUrl && (
-        <a href={ticket.paymentScreenshotUrl} target="_blank" rel="noopener noreferrer">
-          <img className="ticket-screenshot" src={ticket.paymentScreenshotUrl} alt={t('viewScreenshotLabel')} />
+      {ticket.paymentScreenshotDataUrl && (
+        <a href={ticket.paymentScreenshotDataUrl} target="_blank" rel="noopener noreferrer">
+          <img className="ticket-screenshot" src={ticket.paymentScreenshotDataUrl} alt={t('viewScreenshotLabel')} />
         </a>
       )}
 

@@ -3,12 +3,16 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // DEMO-ONLY rules — wide open, no auth check at all.
     // Order tickets contain customer names, phone numbers, addresses and a
-    // link to their payment screenshot. That's sensitive enough that this
+    // compressed payment screenshot. That's sensitive enough that this
     // MUST be locked down (Firebase Auth + rules that check the signed-in
     // user is the owner) before this site is used with real customers.
     // Fine for a private pitch demo only.
+    //
+    // The size cap on create is a basic abuse guard: Firestore documents
+    // cap at 1MB anyway, this just fails fast with a clear error instead of
+    // a confusing write failure if a screenshot didn't compress small enough.
     match /orders/{orderId} {
-      allow create: if true;
+      allow create: if request.resource.size < 900000;
       allow read, update: if true;
       allow delete: if false;
     }

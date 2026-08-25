@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { createOrderTicket } from './ordersRepo';
 import { generateTicketId } from './generateTicketId';
+import { compressImageToDataUrl } from './compressImage';
 
 // Shared two-step checkout state machine behind both the cart drawer and the
 // custom order form: fill in order + fulfillment details ('form') -> pay the
@@ -26,12 +27,13 @@ export function useTicketCheckout() {
     setPhase('submitting');
     const id = generateTicketId();
     try {
-      // Firebase's upload SDK retries with backoff on network failures
-      // instead of rejecting quickly — without this timeout, a bad network
-      // (or an unconfigured firebaseConfig.js) leaves the customer staring
-      // at "Submitting..." indefinitely instead of seeing an error.
+      const paymentScreenshotDataUrl = await compressImageToDataUrl(screenshot);
+      // Firestore writes can hang on a bad network — without this timeout,
+      // an unconfigured firebaseConfig.js or flaky connection leaves the
+      // customer staring at "Submitting..." indefinitely instead of seeing
+      // an error.
       await Promise.race([
-        createOrderTicket({ ticketId: id, paymentScreenshotFile: screenshot, ...payload }),
+        createOrderTicket({ ticketId: id, paymentScreenshotDataUrl, ...payload }),
         new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 15000)),
       ]);
       setTicketId(id);

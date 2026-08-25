@@ -1,8 +1,7 @@
 import {
   collection, addDoc, doc, updateDoc, onSnapshot, query, orderBy, serverTimestamp,
 } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db, storage } from '../firebaseConfig';
+import { db } from '../firebaseConfig';
 
 const ORDERS_COLLECTION = 'orders';
 
@@ -11,15 +10,8 @@ const ORDERS_COLLECTION = 'orders';
 // "preparing" was requested, e.g. no separate "ready"/"completed" state).
 export async function createOrderTicket({
   ticketId, source, items, customItem, fulfillment,
-  subtotal, deliveryFee, total, depositAmount, paymentScreenshotFile,
+  subtotal, deliveryFee, total, depositAmount, paymentScreenshotDataUrl,
 }) {
-  let paymentScreenshotUrl = null;
-  if (paymentScreenshotFile) {
-    const fileRef = ref(storage, `payment-screenshots/${ticketId}-${paymentScreenshotFile.name}`);
-    await uploadBytes(fileRef, paymentScreenshotFile);
-    paymentScreenshotUrl = await getDownloadURL(fileRef);
-  }
-
   await addDoc(collection(db, ORDERS_COLLECTION), {
     ticketId,
     source, // 'cart' | 'custom'
@@ -30,7 +22,7 @@ export async function createOrderTicket({
     deliveryFee: deliveryFee ?? null,
     total: total ?? null,
     depositAmount,
-    paymentScreenshotUrl,
+    paymentScreenshotDataUrl, // compressed image string, see utils/compressImage.js
     status: 'pending_payment_confirmation',
     createdAt: serverTimestamp(),
   });
