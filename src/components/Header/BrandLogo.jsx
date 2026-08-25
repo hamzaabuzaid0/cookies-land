@@ -1,20 +1,13 @@
-// Placeholder mark standing in for the real badge logo until the actual
-// image file is dropped in (see src/assets/README — swap the <svg> below for
-// an <img src={logo} /> once the file exists). Colors match the real badge:
-// pink background, warm tan cookie, dark maroon-brown chips, near-black ink.
+import logo from '../../assets/logo.png';
+
+// Cropped from the real Cookies Land badge (their Facebook cover photo,
+// confirmed by filename match) — the source image also has "CoOkies LaaaND
+// #حلو_وحادق" text below the cookie mark, cropped out here since the header
+// slot is a small circle.
 export function BrandLogo() {
   return (
     <div className="brand-logo">
-      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="50" r="44" fill="#FDDCF1" stroke="#1B171D" strokeWidth="3" />
-        <circle cx="50" cy="52" r="30" fill="#E3A85C" stroke="#1B171D" strokeWidth="2.5" />
-        <circle cx="38" cy="42" r="4" fill="#6E2A3B" />
-        <circle cx="60" cy="40" r="3.5" fill="#6E2A3B" />
-        <circle cx="52" cy="56" r="4.2" fill="#6E2A3B" />
-        <circle cx="36" cy="60" r="3.2" fill="#6E2A3B" />
-        <circle cx="64" cy="60" r="4" fill="#6E2A3B" />
-        <circle cx="46" cy="68" r="3" fill="#6E2A3B" />
-      </svg>
+      <img src={logo} alt="Cookies Land" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
     </div>
   );
 }
