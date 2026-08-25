@@ -70,7 +70,7 @@ const rawProducts = [
   },
 
   // Desserts & ice cream
-  { ar: 'تريس ليتشيس', en: 'Tres Leches', cat: 'desserts', confirmed: true, image: null },
+  { ar: 'تري ليتشي', en: 'Tres Leches', cat: 'desserts', confirmed: true, image: null },
   {
     ar: 'آيس كريم',
     en: 'Ice Cream (assorted flavors)',
