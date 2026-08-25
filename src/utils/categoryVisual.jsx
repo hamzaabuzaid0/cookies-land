@@ -4,7 +4,6 @@
 // stand-in strategy as the pharmacy demo, until the owner sends real images.
 export const CATEGORY_STYLE = {
   mahashi: { bg: '#e8f2e0', fg: '#4a7a2a' },
-  ready: { bg: '#fdece0', fg: '#a85a2a' },
   protein: { bg: '#f7e0e6', fg: '#8a2f42' },
   sauces: { bg: '#fdf1da', fg: '#a8791a' },
   desserts: { bg: '#fbe3f0', fg: '#c23f86' },
@@ -16,12 +15,6 @@ const iconPaths = {
     <>
       <ellipse cx="12" cy="13" rx="7.5" ry="5.5" />
       <path d="M12 7.5c-1-2-1-3.5 0-5.5 1 2 1 3.5 0 5.5z" />
-    </>
-  ),
-  ready: (
-    <>
-      <path d="M4 11h16a1 1 0 0 1 1 1 7 7 0 0 1-7 7H10a7 7 0 0 1-7-7 1 1 0 0 1 1-1z" />
-      <path d="M8 11c0-3 1.5-5 4-7 2.5 2 4 4 4 7" />
     </>
   ),
   protein: (
@@ -48,8 +41,8 @@ const iconPaths = {
 // container. Used for product cards and the "shop by category" quick grid —
 // the universal visual stand-in until real product photos exist.
 export function CategoryVisual({ catId, size = '38px' }) {
-  const style = CATEGORY_STYLE[catId] || CATEGORY_STYLE.ready;
-  const paths = iconPaths[catId] || iconPaths.ready;
+  const style = CATEGORY_STYLE[catId] || CATEGORY_STYLE.protein;
+  const paths = iconPaths[catId] || iconPaths.protein;
   return (
     <div
       style={{

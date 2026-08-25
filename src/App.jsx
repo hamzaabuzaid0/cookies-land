@@ -16,12 +16,13 @@ import { AuthModal } from './components/Auth/AuthModal';
 import { AdminSection } from './components/Owner/OwnerPage';
 
 function Storefront() {
+  const { isAdmin } = useAuth();
   return (
     <>
       <Hero />
       <CategoryQuickGrid />
       <ShopSections />
-      <CustomOrderForm />
+      {!isAdmin && <CustomOrderForm />}
       <Footer />
     </>
   );

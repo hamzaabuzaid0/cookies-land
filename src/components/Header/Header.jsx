@@ -35,7 +35,7 @@ export function Header() {
               <span>{t('accountBtn')}</span>
             </button>
           )}
-          {!adminView && (
+          {!adminView && !isAdmin && (
             <button className="cart-btn" onClick={openCart}>
               <span>🛒</span>
               <span>{t('cart')}</span>
@@ -51,7 +51,7 @@ export function Header() {
           ) : (
             <>
               <a className="nav-link" href="#shop">{t('navShop')}</a>
-              <a className="nav-link" href="#custom-order">{t('navCustomOrder')}</a>
+              {!isAdmin && <a className="nav-link" href="#custom-order">{t('navCustomOrder')}</a>}
               <a className="nav-link" href="#about">{t('navAbout')}</a>
               {isAdmin && (
                 <button className="nav-link admin-nav-link" onClick={() => setAdminView(true)}>

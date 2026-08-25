@@ -39,16 +39,15 @@ const rawProducts = [
   { ar: 'بصل محشي', en: 'Stuffed Onions', cat: 'mahashi', confirmed: false, unit: 'tray', image: null },
   { ar: 'كرنب محشي', en: 'Stuffed Cabbage', cat: 'mahashi', confirmed: false, unit: 'tray', image: null },
 
-  // Ready-to-cook meals
+  // Protein & meat — confirmed items first, sold by the kilo
   {
     ar: 'بانيه جاهز للتسوية',
     en: 'Ready-to-Cook Breaded Cutlets (Panée)',
-    cat: 'ready',
+    cat: 'protein',
     confirmed: true,
+    unit: 'kg',
     image: null,
   },
-
-  // Protein & meat — confirmed items first, sold by the kilo
   { ar: 'كفتة رز', en: 'Rice Kofta', cat: 'protein', confirmed: true, unit: 'kg', image: null },
   { ar: 'كفتة مشوية', en: 'Grilled Kofta', cat: 'protein', confirmed: true, unit: 'kg', image: null },
   { ar: 'برجر مجمد', en: 'Frozen Burger Patties', cat: 'protein', confirmed: true, unit: 'kg', image: null },
