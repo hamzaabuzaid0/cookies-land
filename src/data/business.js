@@ -12,10 +12,10 @@ export const business = {
   // Cookies Land Instagram (if any) is confirmed.
   deliveryFee: 25, // UNCONFIRMED placeholder — ask the owner for the real fee (or whether it varies)
 
-  // Deposit / ticket system — all placeholders, none of this is confirmed yet.
-  depositAmount: 50, // UNCONFIRMED — ask the owner what deposit she actually wants
-  instapayNumber: 'TODO — owner\'s InstaPay / Vodafone Cash number', // MUST be filled before real use
-  instapayName: 'TODO — name the payment should show under',
+  // Deposit / ticket system
+  depositAmount: 50,
+  instapayNumber: '01150288114',
+  instapayName: 'كوكيز لاند',
 
   // PIN for the /owner ticket dashboard. This is a UX gate only, NOT real
   // security — see src/firebaseConfig.js and firestore.rules for why. Change

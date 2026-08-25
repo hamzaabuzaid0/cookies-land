@@ -8,6 +8,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 export default defineConfig({
   plugins: [react(), viteSingleFile()],
   build: {
+    outDir: 'docs', // GitHub Pages serves straight from main /docs — same convention as the pharmacy site
     cssCodeSplit: false,
     assetsInlineLimit: 100000000,
   },
