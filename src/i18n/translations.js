@@ -33,6 +33,9 @@ export const translations = {
     priceNote: 'السعر النهائي يتأكد على واتساب',
     photoPending: 'الصورة هتتضاف قريبًا',
     prelim: 'قائمة أولية',
+    inCartLabel: 'في السلة',
+    doneBtn: 'تم',
+    backToAllCategories: '← كل الأقسام',
 
     // Cart
     yourCart: 'سلتك',
@@ -184,6 +187,9 @@ export const translations = {
     priceNote: 'Final price confirmed on WhatsApp',
     photoPending: 'Photo coming soon',
     prelim: 'Preliminary list',
+    inCartLabel: 'in cart',
+    doneBtn: 'Done',
+    backToAllCategories: '← All Categories',
 
     // Cart
     yourCart: 'Your Cart',

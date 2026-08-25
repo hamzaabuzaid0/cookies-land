@@ -71,8 +71,14 @@ header{
 .nav-link{
   font-size:0.85rem;font-weight:700;color:var(--muted);white-space:nowrap;
   padding:4px 2px;border-bottom:2px solid transparent;
+  /* Some nav links render as <button> (admin link, back-to-store) — strip
+     the browser's default button chrome (grey bg/border) so they look
+     identical to the plain <a> nav links. */
+  background:none;border-inline:none;border-top:none;font-family:inherit;cursor:pointer;
 }
 .nav-link:hover{color:var(--maroon-dark);}
+.nav-link.active{color:var(--maroon-dark);border-bottom-color:var(--maroon);}
+.admin-nav-link{color:var(--maroon);}
 
 /* ===== Hero ===== */
 .hero{
@@ -103,7 +109,16 @@ header{
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
   padding:14px 10px;text-align:center;box-shadow:var(--shadow);
   transition:transform .15s, box-shadow .15s;display:block;
+  width:100%;font-family:inherit;cursor:pointer;
 }
+
+/* ===== Category page (clicking a category opens this, no scrolling) ===== */
+.category-page-header{
+  max-width:1100px;margin:0 auto;padding:20px 16px 0;
+  display:flex;flex-direction:column;gap:6px;align-items:flex-start;
+}
+.category-page-header .nav-link{padding:0;}
+.category-page-header h1{margin:0;font-size:1.3rem;color:var(--maroon-dark);}
 .cat-quick-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(110,42,59,0.14);}
 .cat-quick-icon{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;overflow:hidden;}
 .cat-quick-label{font-size:0.75rem;font-weight:700;color:var(--ink);line-height:1.4;}
@@ -115,7 +130,7 @@ main{max-width:1100px;margin:0 auto;padding:16px;}
 .product-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
   padding:12px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);
-  position:relative;transition:box-shadow .15s, transform .15s;
+  position:relative;transition:box-shadow .15s, transform .15s;cursor:pointer;
 }
 .product-card:hover{box-shadow:0 6px 18px rgba(110,42,59,0.14);transform:translateY(-2px);}
 .product-icon{
@@ -142,6 +157,25 @@ main{max-width:1100px;margin:0 auto;padding:16px;}
   width:26px;height:26px;border-radius:6px;border:1px solid var(--border);
   background:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;
 }
+.in-cart-pill{
+  margin-top:auto;background:var(--bg);color:var(--maroon-dark);border:1px solid var(--border);
+  border-radius:8px;padding:8px 10px;font-size:0.78rem;font-weight:700;text-align:center;
+}
+
+/* ===== Product detail modal ===== */
+.product-detail-modal{
+  position:fixed;top:50%;inset-inline-start:50%;transform:translate(-50%,-50%);
+  background:var(--card);border-radius:var(--radius);padding:24px;
+  width:min(340px,90vw);box-shadow:var(--shadow);z-index:110;text-align:center;
+}
+html[dir="rtl"] .product-detail-modal{transform:translate(50%,-50%);}
+.product-detail-close{position:absolute;top:10px;inset-inline-end:14px;font-size:1.4rem;}
+.product-detail-icon{
+  width:100px;height:100px;border-radius:16px;overflow:hidden;margin:0 auto 10px;
+  border:1px solid var(--border);
+}
+.product-detail-name{margin:8px 0 4px;font-size:1.05rem;}
+.product-detail-qty{margin:16px 0;}
 
 /* ===== Fulfillment fields (cart checkout + custom order) ===== */
 .fulfillment-toggle{display:flex;gap:8px;margin-bottom:12px;}

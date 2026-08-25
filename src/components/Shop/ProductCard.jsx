@@ -3,17 +3,18 @@ import { useCart } from '../../context/CartContext';
 import { productName } from '../../utils/productName';
 import { CategoryVisual } from '../../utils/categoryVisual';
 import { Ltr } from '../../utils/Ltr';
-import { unitStep, formatQty } from '../../utils/unitLabel';
+import { formatQty } from '../../utils/unitLabel';
 
-export function ProductCard({ product }) {
+// Clicking anywhere on the card opens ProductDetailModal, where quantity
+// (in the item's real unit — tray/kg/tub) is actually chosen.
+export function ProductCard({ product, onOpen }) {
   const { lang, t } = useLanguage();
-  const { cart, changeQty } = useCart();
+  const { cart } = useCart();
   const qty = cart[product.id] || 0;
   const name = productName(product, lang);
-  const step = unitStep(product);
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => onOpen(product)} role="button" tabIndex={0}>
       <div className="product-icon">
         {product.image ? (
           <img src={product.image} alt={name} />
@@ -33,13 +34,9 @@ export function ProductCard({ product }) {
       <div className="price-note">{t('priceApprox')} — {t('priceNote')}</div>
 
       {qty > 0 ? (
-        <div className="qty-row">
-          <button className="qty-btn" onClick={() => changeQty(product.id, -step)}>−</button>
-          <span><Ltr>{formatQty(qty, product, lang)}</Ltr></span>
-          <button className="qty-btn" onClick={() => changeQty(product.id, step)}>+</button>
-        </div>
+        <div className="in-cart-pill"><Ltr>{formatQty(qty, product, lang)}</Ltr> {t('inCartLabel')}</div>
       ) : (
-        <button className="add-btn" onClick={() => changeQty(product.id, 1)}>{t('add')}</button>
+        <button className="add-btn" onClick={(e) => { e.stopPropagation(); onOpen(product); }}>{t('add')}</button>
       )}
     </div>
   );

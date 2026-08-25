@@ -7,6 +7,7 @@ import { Header } from './components/Header/Header';
 import { Hero } from './components/Home/Hero';
 import { CategoryQuickGrid } from './components/Home/CategoryQuickGrid';
 import { ShopSections } from './components/Shop/ShopSections';
+import { CategoryPage } from './components/Shop/CategoryPage';
 import { CustomOrderForm } from './components/CustomOrder/CustomOrderForm';
 import { Footer } from './components/Footer/Footer';
 import { Overlay } from './components/Overlay';
@@ -22,20 +23,25 @@ function Storefront() {
       <ShopSections />
       <CustomOrderForm />
       <Footer />
-      <Overlay />
-      <CartDrawer />
     </>
   );
 }
 
 function Shell() {
-  const { adminView } = useDrawer();
+  const { adminView, categoryView } = useDrawer();
   const { isAdmin } = useAuth();
+
+  let body;
+  if (adminView && isAdmin) body = <AdminSection />;
+  else if (categoryView) body = <CategoryPage catId={categoryView} />;
+  else body = <Storefront />;
 
   return (
     <>
       <Header />
-      {adminView && isAdmin ? <AdminSection /> : <Storefront />}
+      {body}
+      <Overlay />
+      <CartDrawer />
       <AuthModal />
     </>
   );

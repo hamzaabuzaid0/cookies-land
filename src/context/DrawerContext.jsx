@@ -6,6 +6,7 @@ export function DrawerProvider({ children }) {
   const [cartOpen, setCartOpen] = useState(false);
   const [authOpen, setAuthOpen] = useState(false);
   const [adminView, setAdminView] = useState(false);
+  const [categoryView, setCategoryView] = useState(null); // null | category id
 
   const openCart = useCallback(() => setCartOpen(true), []);
   const closeCart = useCallback(() => setCartOpen(false), []);
@@ -16,6 +17,7 @@ export function DrawerProvider({ children }) {
     cartOpen, openCart, closeCart,
     authOpen, openAuth, closeAuth,
     adminView, setAdminView,
+    categoryView, setCategoryView,
   };
 
   return <DrawerContext.Provider value={value}>{children}</DrawerContext.Provider>;
