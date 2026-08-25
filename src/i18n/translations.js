@@ -86,6 +86,54 @@ export const translations = {
     waMsgCustomNotes: 'ملاحظات',
     waMsgCustomConfirm: 'من فضلكم كلموني لتأكيد التفاصيل والسعر 🙏',
 
+    // Deposit step
+    depositTitle: 'خطوة الدفع',
+    depositIntro: 'لتأكيد الطلب، حوّلوا مبلغ العربون على الرقم ده، وارفعوا صورة إيصال التحويل.',
+    depositAmountLabel: 'مبلغ العربون',
+    payToLabel: 'حوّلوا على (إنستاباي / فودافون كاش)',
+    payToNameLabel: 'الاسم المسجل بيه الرقم',
+    uploadScreenshotLabel: 'صورة إيصال التحويل',
+    uploadScreenshotHint: 'ارفعوا سكرين شوت للتحويل من تطبيق إنستاباي أو المحفظة',
+    screenshotRequired: 'من فضلكم ارفعوا صورة إيصال التحويل',
+    backToOrder: 'رجوع',
+    continueToDeposit: 'متابعة لخطوة الدفع',
+    submitTicket: 'تأكيد الدفع وإرسال الطلب',
+    submitting: 'جاري الإرسال...',
+    submitFailed: 'حصل خطأ أثناء الإرسال، من فضلكم حاولوا تاني',
+    ticketCreatedTitle: 'تم استلام طلبكم! 🎉',
+    ticketCreatedBody: 'رقم طلبكم',
+    ticketCreatedNote: 'هنراجع إيصال الدفع، وهتوصلكم رسالة على واتساب لما الطلب يتأكد ويبدأ التحضير.',
+    startNewOrder: 'طلب جديد',
+
+    // Owner ticket dashboard (/owner)
+    ownerPageTitle: 'تذاكر الطلبات',
+    ownerPinPrompt: 'ادخلي كود الدخول',
+    ownerPinWrong: 'الكود غلط',
+    ownerPinSubmit: 'دخول',
+    ticketListEmpty: 'لسه مفيش طلبات',
+    statusPending: 'في انتظار تأكيد الدفع',
+    statusPreparing: 'جاري التحضير',
+    ticketFromLabel: 'الاسم',
+    ticketPhoneLabel: 'الموبايل',
+    ticketFulfillmentLabel: 'الاستلام',
+    ticketItemsLabel: 'الطلب',
+    ticketTotalLabel: 'الإجمالي',
+    ticketDepositLabel: 'العربون',
+    ticketDateLabel: 'التاريخ',
+    viewScreenshotLabel: 'صورة إيصال الدفع',
+    notifyReceivedBtn: '📲 إشعار: الطلب مستلم',
+    confirmPaymentBtn: '✅ تأكيد الدفع + إشعار التحضير',
+    refreshHint: 'الصفحة دي بتتحدث لوحدها أول ما طلب جديد يوصل.',
+
+    // WhatsApp notify messages sent BY the owner FROM the ticket dashboard
+    // (one tap, pre-filled — see /owner). Always Arabic, like the other
+    // WhatsApp messages.
+    notifyReceivedGreeting: 'أهلاً',
+    notifyTicketLabel: 'رقم الطلب',
+    notifyReceivedBody: 'استلمنا طلبكم وصورة إيصال الدفع، وهنأكد الطلب في أقرب وقت 🙏',
+    notifyPreparingGreeting: 'أهلاً',
+    notifyPreparingBody: 'تم تأكيد الدفع، وطلبكم دلوقتي بيتجهز 🎉',
+
     // About / footer
     aboutTitle: 'عن كوكيز لاند',
     aboutText:
@@ -178,6 +226,54 @@ export const translations = {
     waMsgCustomDate: 'Date needed',
     waMsgCustomNotes: 'Notes',
     waMsgCustomConfirm: 'Please call/message to confirm details and price 🙏',
+
+    // Deposit step
+    depositTitle: 'Payment Step',
+    depositIntro: 'To confirm your order, send the deposit to this number and upload a screenshot of the transfer.',
+    depositAmountLabel: 'Deposit Amount',
+    payToLabel: 'Send to (InstaPay / Vodafone Cash)',
+    payToNameLabel: 'Name on the account',
+    uploadScreenshotLabel: 'Payment Screenshot',
+    uploadScreenshotHint: 'Upload a screenshot of the transfer from InstaPay or your wallet app',
+    screenshotRequired: 'Please upload a screenshot of the payment',
+    backToOrder: 'Back',
+    continueToDeposit: 'Continue to Payment',
+    submitTicket: 'Confirm Payment & Submit Order',
+    submitting: 'Submitting...',
+    submitFailed: 'Something went wrong sending your order, please try again',
+    ticketCreatedTitle: 'Order received! 🎉',
+    ticketCreatedBody: 'Your ticket number is',
+    ticketCreatedNote: "We'll review the payment screenshot, and you'll get a WhatsApp message once your order is confirmed and preparation starts.",
+    startNewOrder: 'Start a New Order',
+
+    // Owner ticket dashboard (/owner)
+    ownerPageTitle: 'Order Tickets',
+    ownerPinPrompt: 'Enter access code',
+    ownerPinWrong: 'Wrong code',
+    ownerPinSubmit: 'Enter',
+    ticketListEmpty: 'No orders yet',
+    statusPending: 'Awaiting payment confirmation',
+    statusPreparing: 'Preparing',
+    ticketFromLabel: 'Name',
+    ticketPhoneLabel: 'Phone',
+    ticketFulfillmentLabel: 'Fulfillment',
+    ticketItemsLabel: 'Order',
+    ticketTotalLabel: 'Total',
+    ticketDepositLabel: 'Deposit',
+    ticketDateLabel: 'Date',
+    viewScreenshotLabel: 'Payment Screenshot',
+    notifyReceivedBtn: '📲 Notify: Order Received',
+    confirmPaymentBtn: '✅ Confirm Payment + Notify: Preparing',
+    refreshHint: 'This page updates itself automatically when a new order arrives.',
+
+    // WhatsApp notify messages sent BY the owner FROM the ticket dashboard
+    // (one tap, pre-filled — see /owner). Always Arabic, like the other
+    // WhatsApp messages.
+    notifyReceivedGreeting: 'Hi',
+    notifyTicketLabel: 'Order number',
+    notifyReceivedBody: "We've received your order and payment screenshot, we'll confirm it shortly 🙏",
+    notifyPreparingGreeting: 'Hi',
+    notifyPreparingBody: "Your payment is confirmed and your order is being prepared now 🎉",
 
     // About / footer
     aboutTitle: 'About Cookies Land',
