@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, useCallback, useMemo } from 'react';
-import { products } from '../data/products';
+import { useCatalog } from './CatalogContext';
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
+  const { products } = useCatalog();
   const [cart, setCart] = useState({}); // productId -> qty
 
   const changeQty = useCallback((id, delta) => {

@@ -1,22 +1,26 @@
 import { useState } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { useCatalog } from '../../context/CatalogContext';
 import { categories } from '../../data/categories';
-import { products } from '../../data/products';
 import { ProductCard } from './ProductCard';
 import { ProductDetailModal } from './ProductDetailModal';
 
 // filterCategory: category id to show only that section (used by
 // CategoryPage — clicking a category opens a dedicated page instead of
 // scrolling), or omitted to show the full catalog (default shop view).
+// Items the admin has marked unavailable (see CatalogContext) are hidden
+// from customers here — she still sees/manages them in the admin catalog
+// editor.
 export function ShopSections({ filterCategory }) {
   const { lang } = useLanguage();
+  const { products } = useCatalog();
   const [openProduct, setOpenProduct] = useState(null);
   const cats = filterCategory ? categories.filter((c) => c.id === filterCategory) : categories;
 
   return (
     <main id="shop">
       {cats.map((cat) => {
-        const items = products.filter((p) => p.cat === cat.id);
+        const items = products.filter((p) => p.cat === cat.id && p.available !== false);
         if (items.length === 0) return null;
         return (
           <section key={cat.id} id={`cat-${cat.id}`}>

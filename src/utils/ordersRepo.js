@@ -5,9 +5,9 @@ import { db } from '../firebaseConfig';
 
 const ORDERS_COLLECTION = 'orders';
 
-// Statuses: 'pending_payment_confirmation' -> 'preparing'. Kept to just
-// these two — that's the whole lifecycle asked for (nothing after
-// "preparing" was requested, e.g. no separate "ready"/"completed" state).
+// Statuses: 'pending_payment_confirmation' -> 'preparing' -> 'completed'.
+// 'completed' just moves a ticket into the admin's completed/archive filter
+// (see OwnerPage) — no customer-facing WhatsApp message for that step.
 export async function createOrderTicket({
   ticketId, source, items, customItem, fulfillment,
   subtotal, deliveryFee, total, depositAmount, paymentScreenshotDataUrl,

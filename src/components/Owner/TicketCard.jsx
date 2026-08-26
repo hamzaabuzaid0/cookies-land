@@ -20,12 +20,18 @@ export function TicketCard({ ticket }) {
     openWhatsapp(buildPreparingNotifyMessage(ticket));
   };
 
+  const markCompleted = () => updateOrderStatus(ticket.docId, 'completed');
+
   return (
     <div className="ticket-card">
       <div className="ticket-card-head">
         <span className="ticket-id"><Ltr>{ticket.ticketId}</Ltr></span>
-        <span className={'status-badge ' + (ticket.status === 'preparing' ? 'status-preparing' : 'status-pending')}>
-          {ticket.status === 'preparing' ? t('statusPreparing') : t('statusPending')}
+        <span className={'status-badge ' + (
+          ticket.status === 'completed' ? 'status-completed'
+          : ticket.status === 'preparing' ? 'status-preparing' : 'status-pending'
+        )}>
+          {ticket.status === 'completed' ? t('statusCompleted')
+            : ticket.status === 'preparing' ? t('statusPreparing') : t('statusPending')}
         </span>
       </div>
 
@@ -66,14 +72,21 @@ export function TicketCard({ ticket }) {
         </a>
       )}
 
-      <div className="ticket-actions">
-        <button type="button" className="fulfillment-btn" onClick={notifyReceived}>{t('notifyReceivedBtn')}</button>
-        {ticket.status !== 'preparing' && (
-          <button type="button" className="fulfillment-btn active" onClick={confirmAndNotifyPreparing}>
-            {t('confirmPaymentBtn')}
-          </button>
-        )}
-      </div>
+      {ticket.status !== 'completed' && (
+        <div className="ticket-actions">
+          <button type="button" className="fulfillment-btn" onClick={notifyReceived}>{t('notifyReceivedBtn')}</button>
+          {ticket.status === 'pending_payment_confirmation' && (
+            <button type="button" className="fulfillment-btn active" onClick={confirmAndNotifyPreparing}>
+              {t('confirmPaymentBtn')}
+            </button>
+          )}
+          {ticket.status === 'preparing' && (
+            <button type="button" className="fulfillment-btn active" onClick={markCompleted}>
+              {t('markCompletedBtn')}
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

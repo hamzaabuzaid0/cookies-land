@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { useDrawer } from '../../context/DrawerContext';
-import { products } from '../../data/products';
+import { useCatalog } from '../../context/CatalogContext';
 import { business } from '../../data/business';
 import { useFulfillmentForm } from '../../utils/useFulfillmentForm';
 import { useTicketCheckout } from '../../utils/useTicketCheckout';
@@ -15,6 +15,7 @@ import { CartItemRow } from './CartItemRow';
 
 export function CartDrawer() {
   const { t } = useLanguage();
+  const { products } = useCatalog();
   const { cart, itemsTotal, clearCart } = useCart();
   const { cartOpen, closeCart } = useDrawer();
   const form = useFulfillmentForm();

@@ -1,0 +1,13 @@
+{
+  "name": "Cookies Land | كوكيز لاند",
+  "short_name": "Cookies Land",
+  "start_url": "/cookies-land/",
+  "scope": "/cookies-land/",
+  "display": "standalone",
+  "background_color": "#FDDCF1",
+  "theme_color": "#6E2A3B",
+  "icons": [
+    { "src": "/cookies-land/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/cookies-land/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

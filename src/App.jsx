@@ -1,5 +1,6 @@
 import { LanguageProvider } from './i18n/LanguageContext';
 import { CartProvider } from './context/CartContext';
+import { CatalogProvider } from './context/CatalogContext';
 import { DrawerProvider, useDrawer } from './context/DrawerContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
@@ -52,11 +53,13 @@ export default function App() {
   return (
     <LanguageProvider>
       <AuthProvider>
-        <CartProvider>
-          <DrawerProvider>
-            <Shell />
-          </DrawerProvider>
-        </CartProvider>
+        <CatalogProvider>
+          <CartProvider>
+            <DrawerProvider>
+              <Shell />
+            </DrawerProvider>
+          </CartProvider>
+        </CatalogProvider>
       </AuthProvider>
     </LanguageProvider>
   );
